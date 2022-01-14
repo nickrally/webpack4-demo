@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const distPath = path.resolve(__dirname, "dist");
 
 module.exports = {
   entry: {
@@ -13,8 +14,8 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: "**/*",
-          to: ".",
+          from: "{foo.txt,pics/**/*}",
+          to: path.resolve(distPath, `assets/${Date.now()}`),
           context: path.resolve(__dirname, "assets/visual"),
         },
       ],
